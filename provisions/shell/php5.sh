@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-locale-gen en_US.UTF-8
-dpkg-reconfigure locales
+sudo apt-get install -y php5 php5-fpm php-pear php5-common php5-mcrypt php5-mysql php5-cli php5-gd php5-intl php5-curl php5-dev
 
-sudo apt-get update
-sudo apt-get install -y nano gcc g++ make git
+# copy config files
+sudo cp /vagrant/provisions/shell/etc/php5/cli/php.ini /etc/php5/cli/
+sudo cp /vagrant/provisions/shell/etc/php5/fpm/php.ini /etc/php5/fpm/
+sudo cp /vagrant/provisions/shell/etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/
+
+sudo service php5-fpm restart

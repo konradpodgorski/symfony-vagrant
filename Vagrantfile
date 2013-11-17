@@ -8,10 +8,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # later shell scripts assumes that localhost dir already contains symfony project
     if File::exists?( "localhost/web/app_dev.php" ) == false
       puts "Before starting Vagrant you need to create or clone Symfony project in localhost directory.\n"
-      puts "Run\n"
-      puts "    git clone https://github.com/symfony/symfony-standard localhost\n"
-      puts "It will create localhost directory.\n"
-      puts "\n"
+      puts "Run\n\n"
+      puts "    git clone https://github.com/symfony/symfony-standard localhost\n\n"
+      puts "\nand then composer install\n"
+      exit
+    end
+
+    # later shell scripts assumes that localhost dir already contains symfony project
+    if File::directory?( "localhost/vendor" ) == false
+      puts "You forgot to run composer install.\n"
       exit
     end
 
